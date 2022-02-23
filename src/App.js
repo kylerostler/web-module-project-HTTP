@@ -34,7 +34,6 @@ const App = (props) => {
     
   }
 
-  console.log(movieId)
 
   return (
     <div>
@@ -52,6 +51,7 @@ const App = (props) => {
               <EditMovieForm currentMovie={movies.find((movie) => {
                 return movie.id === movieId
               })}
+              setMovies={setMovies}
               />
             </Route>
 
