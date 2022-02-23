@@ -4,18 +4,28 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
+const initMovie = {
+	title:"",
+	director: "",
+	genre: "",
+	metascore: 0,
+	description: ""
+}
+
 const EditMovieForm = (props) => {
 	const { push } = useHistory();
 
-	const { setMovies } = props;
-	const [movie, setMovie] = useState({
-		title:"",
-		director: "",
-		genre: "",
-		metascore: 0,
-		description: ""
-	});
+	const { currentMovie } = props;
+	const [movie, setMovie] = useState(initMovie);
 	
+	useEffect(() => {
+		if(currentMovie) {
+			setMovie(currentMovie)
+		} else {
+			setMovie(initMovie)
+		}
+	}, [currentMovie])
+
 	const handleChange = (e) => {
         setMovie({
             ...movie,
@@ -36,6 +46,8 @@ const EditMovieForm = (props) => {
 	}
 	
 	const { title, director, genre, metascore, description } = movie;
+
+	console.log(props)
 
     return (
 	<div className="col">
