@@ -22,12 +22,13 @@ const AddMovieForm = (props) => {
             ...movie,
             [e.target.name]: e.target.value
         });
+        console.log(movie)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        postMovie(movie);
-        setMovie(initMovie);
+        props.postMovie(movie);
+        push('/movies')
 	}
 	
 	const { title, director, genre, metascore, description } = movie;

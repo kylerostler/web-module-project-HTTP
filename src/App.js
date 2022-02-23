@@ -45,8 +45,7 @@ const App = (props) => {
   const postMovie = (movie) => {
     axios.post(`http://localhost:9000/api/movies/`, movie)
           .then(res=>{
-              setMovies(movies.concat(res.data.movie))
-              debugger
+              setMovies(res.data)
           })
           .catch(err=>{
               debugger
@@ -73,6 +72,10 @@ const App = (props) => {
               setMovies={setMovies}
               />
             </Route>
+              
+            <Route path="/movies/add">
+              <AddMovieForm postMovie={postMovie} />
+            </Route>
 
             <Route path="/movies/:id">
               <Movie setMovieId={setMovieId} deleteMovie={deleteMovie} />
@@ -80,10 +83,6 @@ const App = (props) => {
 
             <Route path="/movies">
               <MovieList movies={movies}/>
-            </Route>
-
-            <Route path="/movies/add">
-              <AddMovieForm postMovie={postMovie} />
             </Route>
           </Switch>
         </div>
